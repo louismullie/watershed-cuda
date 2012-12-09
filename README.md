@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ### Parallel Watershed Segmentation using CUDA
 
 This repo contains:
@@ -19,3 +20,8 @@ See [6] for a recent and comprehensive review of watershed segmentation techniqu
 [[5]](http://parati.dca.fee.unicamp.br/media/Attachments/courseIA366F2S2010/aula10/ijncr.pdf) Körbes A et al. 2011. Advances on Watershed Processing on GPU Architectures. ISMM 2011, LNCS 6671, pp. 260–271, 2011.
 
 [[6]](http://cscjournals.org/csc/manuscript/Journals/IJIP/volume5/Issue5/IJIP-409.pdf) Mahmoudi R, Akil M. 2011. Analyses of the Watershed Transform. International Journal of Image Processing, Vol. 5 no. 5, p. 521-541.
+=======
+File listing:
+
+ws_gpu.py |_g
+>>>>>>> Finalizing implementation for class.
