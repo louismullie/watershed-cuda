@@ -31,7 +31,7 @@ The program `ws_mpi.py` can be run on multiple DCM images by supplying the input
     cd data && unzip dcm.zip && cd ..
   
     # Run the distributed computation.
-    python ws_gpu.py data/
+    mpirun -n 3 python ws_mpi.py data/
 
 The resulting images will be output as PNG files in the supplied directory. The images that will be saved to disk correspond to the superposition of the watershed lines with the original frame.
 
