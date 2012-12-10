@@ -101,7 +101,7 @@ def watershed(I):
 if __name__ == '__main__':
   # Show the usage information.
   if len(argv) != 2:
-    print "Usage: python ws_parallel.py test_image.dcm"
+    print "Usage: python ws_parallel.py test.dcm"
     exit()
   # Read in the DICOM image data.
   O = read_dcm(argv[1])
