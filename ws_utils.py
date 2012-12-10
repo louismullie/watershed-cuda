@@ -65,8 +65,9 @@ def show_progress():
   sys.stdout.write(".")
   sys.stdout.flush()
 
-# Heavily inspired from http://code.google.com/p/pydicom/
-# source/browse/source/dicom/contrib/pydicom_Tkinter.py?
+# Heavily inspired from a 2009 scrit by Daniel Nanz:
+# http://code.google.com/p/pydicom/source/browse/
+# source/dicom/contrib/pydicom_Tkinter.py?
 # r=f2c30464fd3b7e553af910ee5a9f5bcf4b3f4ccf
 def pgm_from_np(arr, window_center, window_width, lut_min=0, lut_max=255):
 

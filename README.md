@@ -19,7 +19,7 @@ The programs `ws_gpu.py`, `ws_serial.py` and `ws_parallel.py` can be run on an i
   
 The result will be displayed in a `matplotlib` popup box.
 
-N.B.: the serial implementations of the GPU algorithm (`ws_parallel.py`) is inherently inefficient and will take several minutes to run on the test image. It is provided only for reference. The `ws_serial.py` version uses path compression with a reference list for pixel labelling and is much more efficient.
+N.B.: The serial implementation of the GPU algorithm (`ws_parallel.py`) is inherently inefficient and will take several minutes to run on the test image. It is provided only for reference. The `ws_serial.py` version uses path compression with a reference list for pixel labelling and is much more efficient.
 
 **Running on several images**
 
@@ -37,13 +37,13 @@ The resulting images will be output as PNG files in the supplied directory. The 
 
 **References**
 
-[[1]](http://www.fem.unicamp.br/~labaki/Academic/cilamce2009/1820-1136-1-RV.pdf) Vitor B, Körbes A. Fast image segmentation by watershed transform on graphical hardware. In: Proceedings of the 17th International Conference on Systems, Signals and Image Processing, pp. 376-379, Nov. 2010, Rio de Janeiro, Brazil.
+[[1]](http://www.fem.unicamp.br/~labaki/Academic/cilamce2009/1820-1136-1-RV.pdf) Vitor B, Körbes A. Fast image segmentation by watershed transform on graphical hardware. In: Proceedings of the 17th International Conference on Systems, Signals and Image Processing, pp. 376-379, Rio de Janeiro, Brazil.
 
-[[2]](http://www.lbd.dcc.ufmg.br/colecoes/wvc/2009/0012.pdf) Körbes A et al. 2009. A proposal for a parallel watershed transform algorithm for real-time segmentation. In: V Workshop de Visão Computacional, 2009, São Paulo.
+[[2]](http://www.lbd.dcc.ufmg.br/colecoes/wvc/2009/0012.pdf) Körbes A et al. 2009. A proposal for a parallel watershed transform algorithm for real-time segmentation. In: V Workshop de Visão Computacional, São Paulo, Brazil.
 
 [[3]](http://parati.dca.fee.unicamp.br/media/Attachments/courseIA366F2S2010/aula10/ijncr.pdf) Körbes A et al. 2010. Analysis of a step-by-step watershed algorithm using CUDA. International Journal of Natural Computing Research. 1:16-28.
 
-[[4]](http://parati.dca.fee.unicamp.br/media/Attachments/courseIA366F2S2010/aula10/ijncr.pdf) Körbes A et al. 2011. Advances on Watershed Processing on GPU Architectures. In: 10th International Symposium on Mathematical Morphology, 2011, Intra, Lake Maggiore, Italy.
+[[4]](http://parati.dca.fee.unicamp.br/media/Attachments/courseIA366F2S2010/aula10/ijncr.pdf) Körbes A et al. 2011. Advances on Watershed Processing on GPU Architectures. In: 10th International Symposium on Mathematical Morphology, Lake Maggiore, Italy.
 
 [[5]](http://code.google.com/p/pydicom/source/browse/source/dicom/contrib/pydicom_Tkinter.py?r=f2c30464fd3b7e553af910ee5a9f5bcf4b3f4ccf) Reference for DICOM reader script.
 
