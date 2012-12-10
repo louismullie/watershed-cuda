@@ -2,6 +2,7 @@ import pycuda.compiler as nvcc
 import pycuda.gpuarray as gpu
 import pycuda.driver as cu
 import pycuda.autoinit
+from sys import argv
 from ws_utils import *
 
 # Read and compile CUDA kernels.
@@ -104,7 +105,7 @@ if __name__ == '__main__':
   # Read in the DICOM image data.
   O = read_dcm(argv[1])
   # Preprocess the image.
-  I = preprocess(I)
+  I = preprocess(O)
   # Get the watershed transform.
   L = watershed(I)
   # Show the final edges.

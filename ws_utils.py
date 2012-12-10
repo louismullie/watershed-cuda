@@ -1,10 +1,9 @@
 import numpy as np; import os
-from skimage.filter import canny
 from scipy import ndimage
 import matplotlib.image as img
 import matplotlib.pyplot as plt
 import sys; import Queue
-
+import dicom
 
 # Constants.
 PLATEAU = 0
@@ -38,13 +37,12 @@ def i2t(ind,width):
 
 # Show edges in the final watershed.
 def showEdges(L,I):
-  E = getEdges(L)
-  plt.imshow(E+I,cmap='gray')
+  plt.imshow(getEdges(L,I),cmap='gray')
   plt.show()
 
 # Get edges from watershed image
 # (i.e. watershed lines).
-def getEdges(L):
+def getEdges(L,I):
   E = np.zeros_like(L)
   height,width = L.shape
   for j in range(0,height):
@@ -52,13 +50,13 @@ def getEdges(L):
       p = (j,i); c = 0
       for u in neighbours(j,i):
         if outside(L,u): continue
-        if L[u] < L[p] and E[u] != 1: E[p] = 1
-  return E
+        if L[u] < L[p] and E[u] != 1:
+          E[p] = 125
+  return E+I
 
-# Preprocess an image with a canny filter
-# followed by a 4D gaussian filter.
+# Preprocess with a Gaussian filter.
 def preprocess(I):
-  I = np.int32(canny(I,2,0.2,0.2)) * np.max(I)
+  I = np.float32(I)
   I = ndimage.gaussian_filter(I,1)
   return I
 

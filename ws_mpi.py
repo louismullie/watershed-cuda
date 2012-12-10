@@ -2,9 +2,8 @@ from sys import argv
 import numpy as np
 from mpi4py import MPI
 from collections import deque
-import matplotlib.image as img
-import numpy as np; import os
-from ws_gpu import watershed
+from ws_utils import * 
+import os
 
 # Flags for MPI.
 EXECUTE = 0
@@ -17,17 +16,17 @@ def process_image(comm):
   status = MPI.Status()
   while True:
     msg = comm.recv(None, 0, MPI.ANY_TAG, status)
+    if status.Get_tag() == TERMINATE: break
     folder,file_name = msg
     f = folder + file_name
-    if status.Get_tag() == TERMINATE: break
     # Read in image.
     O = read_dcm(f)
     # Preprocess image.
-    E = preprocess(O)
+    I = preprocess(O)
     # Perform watershed.
-    L = watershedGPU(I)
+    L = watershed(I)
     # Get watershed lines.
-    E = getEdges(O,L)
+    E = getEdges(L,O)
     # Show progress dots.
     show_progress()
     # Save image to disk
@@ -41,12 +40,13 @@ def distribute_images(comm,folder):
 
   size = comm.Get_size()
   status = MPI.Status()
-  queue = os.listdir("data")
+  queue = os.listdir(folder)
 
   # Send out initial data.
   for i in range(1,size):
     file_name = queue.pop(0)
-    comm.send(file_name,i)
+    msg = [folder,file_name]
+    comm.send(msg,i)
 
   # Process all remaining.
   while queue:
@@ -65,16 +65,18 @@ if __name__ == '__main__':
   rank = comm.Get_rank()
   # Show usage.
   if len(argv) != 2:
-    print "Usage: mpirun -N [processes] ws_mpi.py [folder]."
-    print "Folder must contain DCM images only."
+    if rank == 0:
+      print "Usage: mpirun -N [processes] ws_mpi.py [folder]."
+      print "Folder must contain DCM images only."
+    exit()
   # Run as master.
   if rank == 0:
     start_time = MPI.Wtime()
-    distribute_images(comm,folder)
+    distribute_images(comm,argv[1])
     end_time = MPI.Wtime()
     print "Total time: %f" % \
     (end_time - start_time)
   # Run as slave.
   else:
-    from watershed_gpu import watershed
+    from ws_gpu import watershed
     process_image(comm)
